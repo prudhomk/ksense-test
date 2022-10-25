@@ -1,8 +1,8 @@
-import { users, createTableRow } from './users.js';
-
-const table = document.querySelector('table');
+import { getUsers, getPosts, convertUsers } from './users.js';
 
 
-const tr = createTableRow(users);
 
-table.append(tr);
+
+for(const element of document.querySelectorAll("td")) {
+  element.addEventListener("click", getId);
+}
