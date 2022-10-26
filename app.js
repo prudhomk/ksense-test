@@ -1,6 +1,7 @@
+//Use this for mock API https://jsonplaceholder.typicode.com/
 let table = document.querySelector('#table');
 let list = document.querySelector('#list');
-const buttons = document.querySelectorAll('button');
+const button = document.getElementById('button');
 
 function getUsers() {
   fetch('https://jsonplaceholder.typicode.com/users')
@@ -17,10 +18,11 @@ function addTableRow(obj) {
   let tr = document.createElement('tr');
   let td = document.createElement('td');
   let t = document.createTextNode(obj.username);
-  let b = document.createElement('button');
-  b.textContent = 'Show my Posts';
-  b.value = obj.id;
-  td.appendChild(b);
+  let box = document.createElement('input');
+  box.type = 'checkbox';
+  box.id = obj.id;
+  box.value = obj.id;
+  td.appendChild(box);
   td.appendChild(t);
   tr.appendChild(td);
   table.appendChild(tr);
@@ -47,11 +49,11 @@ function addPost(val) {
   h.appendChild(title);
   li.appendChild(title);
   li.appendChild(body);
+  list.appendChild(li);
 }
 
-for(let y=0; y<buttons.length; y++) {
-  buttons[y].addEventListener('click', currentId);
-}
-function currentId() {
-  console.log(this.value);
-}
+button.addEventListener('click', () => {
+  const userId = document.querySelector('input:checked');
+  console.log(userId.value);
+  getPosts(userId.value);
+});
